@@ -1,6 +1,7 @@
 pipeline {
     agent { docker { 
 		image 'bryandollery/terraform-packer-aws-alpine'
+		args '-u root'
 		}
 	 }
     environment {
@@ -24,6 +25,7 @@ pipeline {
 stages{	
    stage('cloneRepo'){
 	    steps {
+	sh 'apk add git make'
 	sh 'git clone https://github.com/OZB96/jenkins-packer'	
 	echo 'Done clonning'
 	}
