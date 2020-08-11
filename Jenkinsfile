@@ -43,6 +43,7 @@ stages{
 	}}}
    stage('build') {
             steps {
+		echo "${aws_access}"
 		sh "cd jenkins-packer && make init && make stop && make start && docker exec -it \$(basename $PWD) make build"
             }
         }
