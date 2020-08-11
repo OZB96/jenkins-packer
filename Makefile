@@ -19,6 +19,7 @@ start:
 		-v $$PWD:/$$(basename $$PWD) \
 		-w /$$(basename $$PWD) \
 		--name packerDemo \
+		--entrypoint "/bin/bash"
 		--hostname $$(basename $$PWD) \
 		bryandollery/terraform-packer-aws-alpine
 
