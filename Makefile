@@ -18,15 +18,15 @@ start:
 		-v /var/run/docker.sock:/var/run/docker.sock \
 		-v $$PWD:/$$(basename $$PWD) \
 		-w /$$(basename $$PWD) \
-		--name $$(basename $$PWD) \
+		--name packerDemo \
 		--hostname $$(basename $$PWD) \
 		bryandollery/terraform-packer-aws-alpine
 
 stop:
-	docker rm -f $$(basename $$PWD) 2> /dev/null || true
+	docker rm -f packerDemo 2> /dev/null || true
 
 exec:
-	docker exec -it $$(basename $$PWD) bash || true
+	docker exec -it packerDemo bash || true
 
 build:
 	packer build packer.json
