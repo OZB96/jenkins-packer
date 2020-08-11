@@ -29,8 +29,8 @@ pipeline {
 	sh 'touch jenkins-packer/creds/credentials'
 	sh 'cat "${aws_access}"'
 	sh "echo '[kh-labs]' >> ./jenkins-packer/creds/credentials"
-	sh "echo 'aws_access_key_id="${aws_access}"' >> ./jenkins-packer/creds/credentials"
-	sh "echo 'aws_secret_access_key="${aws_secret}"' >> ./jenkins-packer/creds/credentials"
+	sh "echo aws_access_key_id="${aws_access}" >> ./jenkins-packer/creds/credentials"
+	sh "echo aws_secret_access_key="${aws_secret}" >> ./jenkins-packer/creds/credentials"
 	}}}
    stage('build') {
             steps {
