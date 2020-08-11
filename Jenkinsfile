@@ -24,6 +24,7 @@ stages{
 } 
    stage('cloneRepo'){
 	    steps {
+	sh 'rm -rf jenkins-packer || true '
 	sh 'git clone https://github.com/OZB96/jenkins-packer'	
 	echo 'Done clonning'
 	}
