@@ -15,7 +15,7 @@ pipeline {
     stages {
     stage('install_dependinces'){
 	steps{
-	sh 'apk add docker git make'
+	sh 'sudo apk add docker git make'
 	}
 	}
     stage('cloneRepo'){
