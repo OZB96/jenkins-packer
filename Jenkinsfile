@@ -20,7 +20,8 @@ pipeline {
 	}
 	}
    stage('addCredsfile'){
-   withCredentials([usernamePassword(
+   steps {
+    withCredentials([usernamePassword(
         credentialsId: '${aws_omar_creds}',
         usernameVariable: 'aws_access',
         passwordVariable: 'aws_secret',
@@ -29,7 +30,7 @@ pipeline {
 	sh "echo '[kh-labs]' >> ./jenkins-packer/creds/credentials"
 	sh "echo 'aws_access_key_id="${aws_access}"' >> ./jenkins-packer/creds/credentials"
 	sh "echo 'aws_secret_access_key="${aws_secret}"' >> ./jenkins-packer/creds/credentials"
-	}
+	}}
    stage('build') {
             steps {
 		sh "cd jenkins-packer && make init && make start && docker docker exec -it $(basename $PWD) make build"
