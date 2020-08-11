@@ -35,5 +35,4 @@ pipeline {
 		sh "cd jenkins-packer && make init && make start && docker docker exec -it \$(basename $PWD) make build"
             }
         }
-        }
 }
