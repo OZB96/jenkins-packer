@@ -1,9 +1,15 @@
 pipeline {
     agent { docker { 
-		image 'bryandollery/alpine-docker'
+		image 'bryandollery/terraform-packer-aws-alpine'
 		args "-u root"
 		}
 	 }
+    environment {
+	TF_NAMESPACE="omar"
+	OWNER="omar"
+	AWS_PROFILE="kh-labs"
+	PROJECT_NAME="web-server"
+	}
     options {
         skipStagesAfterUnstable()
     }
@@ -17,11 +23,6 @@ pipeline {
     )
 }
 stages{	
-   stage('installDependinces') {
-	steps{
-		sh 'apk add make git'
-	}
-} 
    stage('cloneRepo'){
 	    steps {
 	sh 'rm -rf jenkins-packer || true '
@@ -36,15 +37,14 @@ stages{
         usernameVariable: 'aws_access',
         passwordVariable: 'aws_secret',
     )]){
-	sh 'touch jenkins-packer/creds/credentials'
-	sh "echo '[kh-labs]' >> ./jenkins-packer/creds/credentials"
 	sh 'echo aws_access_key_id="${aws_access}" >> ./jenkins-packer/creds/credentials'
 	sh 'echo aws_secret_access_key="${aws_secret}" >> ./jenkins-packer/creds/credentials'
+	sh 'export AWS_ACCESS_KEY_ID="${aws_access}"'
+	sh 'export AWS_SECRET_ACCESS_KEY="${aws_secret}"'
 	}}}
    stage('build') {
             steps {
-		sh "cd jenkins-packer && make init && make stop && make start"
-            	sh "docker exec -it packerDemo bash make build"
+            	sh "cd jenkins-packer && packer build"
 		}
         }
 }
