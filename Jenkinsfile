@@ -15,6 +15,7 @@ pipeline {
     stages {
     stage('cloneRepo'){
 	    steps {
+	sh 'rm -rf jenkins-packer'
 	sh 'git clone https://github.com/OZB96/jenkins-packer'	
 	echo 'Done clonning'
 	}
