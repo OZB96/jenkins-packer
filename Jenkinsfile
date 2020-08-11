@@ -43,7 +43,7 @@ stages{
 	}}}
    stage('build') {
             steps {
-		sh "cd jenkins-packer && make init && make start && docker docker run \$(basename $PWD) make build"
+		sh "cd jenkins-packer && make init && make start && docker docker exec $(basename $PWD) make build"
             }
         }
 }
