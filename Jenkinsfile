@@ -11,7 +11,8 @@ pipeline {
         name: 'aws_omar_creds',
         required: true
     )
-}	
+}
+stages{	
     stage('cloneRepo'){
 	    steps {
 	sh 'git clone https://github.com/OZB96/jenkins-packer'	
@@ -35,4 +36,5 @@ pipeline {
 		sh "cd jenkins-packer && make init && make start && docker docker exec -it \$(basename $PWD) make build"
             }
         }
+}
 }
