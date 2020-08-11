@@ -40,10 +40,10 @@ stages{
 	sh "echo '[kh-labs]' >> ./jenkins-packer/creds/credentials"
 	sh 'echo aws_access_key_id="${aws_access}" >> ./jenkins-packer/creds/credentials'
 	sh 'echo aws_secret_access_key="${aws_secret}" >> ./jenkins-packer/creds/credentials'
+	echo "${aws_access}"
 	}}}
    stage('build') {
             steps {
-		echo "${aws_access}"
 		sh "cd jenkins-packer && make init && make stop && make start && docker exec -it \$(basename $PWD) make build"
             }
         }
