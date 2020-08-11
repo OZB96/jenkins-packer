@@ -44,7 +44,7 @@ stages{
    stage('build') {
             steps {
 		sh "cd jenkins-packer && make init && make stop && make start"
-            	sh "docker exec -it packerDemo sh make build"
+            	sh "docker exec -it packerDemo bash make build"
 		}
         }
 }
