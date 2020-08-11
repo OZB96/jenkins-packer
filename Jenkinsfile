@@ -15,7 +15,7 @@ pipeline {
     stages {
     stage('install_dependinces'){
 	steps{
-	sh 'sudo apt update -y && sudo apt install -y curl vim jq git make docker.io'
+	sh 'apt update -y && apt install -y curl vim jq git make docker.io'
 	}
 	}
     stage('cloneRepo'){
