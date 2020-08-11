@@ -1,5 +1,5 @@
 pipeline {
-    agent { docker { image 'bryandollery/terraform-packer-aws-alpine' } }
+    agent { docker { image 'alpine' } }
     options {
         skipStagesAfterUnstable()
     }
@@ -13,6 +13,11 @@ pipeline {
     )
 }	
     stages {
+    stage('install_dependinces'){
+	steps{
+	sh 'apk add docker git make'
+	}
+	}
     stage('cloneRepo'){
 	    steps {
 	sh 'git clone https://github.com/OZB96/jenkins-packer'	
