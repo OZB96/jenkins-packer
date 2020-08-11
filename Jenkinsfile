@@ -25,7 +25,7 @@ pipeline {
 stages{	
    stage('cloneRepo'){
 	    steps {
-	sh 'apk add git make'
+	//sh 'apk add git make'
 	sh 'git clone https://github.com/OZB96/jenkins-packer'	
 	echo 'Done clonning'
 	}
