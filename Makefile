@@ -1,6 +1,7 @@
 all: stop start exec
 
 init:
+	export TF_NAMESPACE="omar"
 	export PROJECT_NAME="web-server"
 	export OWNER="omar"
 	echo "$$OWNER must be set"
