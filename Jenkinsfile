@@ -1,5 +1,5 @@
 pipeline {
-    agent { docker { image 'codercom/ubuntu-docker' } }
+    agent { docker { image 'chihchistarlordtech/make-docker18.09' } }
     options {
         skipStagesAfterUnstable()
     }
