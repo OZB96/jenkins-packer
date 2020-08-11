@@ -1,5 +1,9 @@
 pipeline {
-    agent { docker { image 'bryandollery/alpine-docker' } }
+    agent { docker { 
+		image 'bryandollery/alpine-docker'
+		args "-u root"
+		}
+	 }
     options {
         skipStagesAfterUnstable()
     }
