@@ -1,5 +1,5 @@
 pipeline {
-    agent { docker { image 'ubuntu' } }
+    agent { docker { image 'codercom/ubuntu-docker' } }
     options {
         skipStagesAfterUnstable()
     }
@@ -12,12 +12,6 @@ pipeline {
         required: true
     )
 }	
-    stages {
-    stage('install_dependinces'){
-	steps{
-	sh 'apt update -y && apt install -y curl vim jq git make docker.io'
-	}
-	}
     stage('cloneRepo'){
 	    steps {
 	sh 'git clone https://github.com/OZB96/jenkins-packer'	
